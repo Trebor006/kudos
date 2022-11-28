@@ -1,7 +1,6 @@
 package com.software.kudos.services;
 
 import com.google.gson.Gson;
-import com.software.kudos.components.redis.JedisClient;
 import com.software.kudos.components.redis.RedisClientInterface;
 import com.software.kudos.components.redis.exceptions.ConnectionException;
 import com.software.kudos.models.KudoDto;

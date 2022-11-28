@@ -6,6 +6,7 @@ public interface RedisClientInterface {
     Long addUpdateObjectOnNamespace(String id, String data) throws ConnectionException;
 
     String getObject() throws ConnectionException;
+
     String getObjectById(String id) throws ConnectionException;
 
     Long removeObjectOnNamespace(String id) throws ConnectionException;
