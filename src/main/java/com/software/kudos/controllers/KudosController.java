@@ -2,6 +2,7 @@ package com.software.kudos.controllers;
 
 import com.software.kudos.models.KudoDto;
 import com.software.kudos.services.KudoServiceInterface;
+import com.tej.JooQDemo.jooq.sample.model.tables.pojos.Kudos;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectFactory;
@@ -22,9 +23,9 @@ public class KudosController implements KudosControllerInterface {
 
     @Override
     @GetMapping
-    public ResponseEntity<List<KudoDto>> getKudos() {
+    public ResponseEntity<List<Kudos>> getKudos() {
         try {
-            List<KudoDto> kudos = kudoServiceFactory.getObject().getKudos();
+            var kudos = kudoServiceFactory.getObject().getKudos();
             return new ResponseEntity<>(kudos, HttpStatus.OK);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -33,9 +34,9 @@ public class KudosController implements KudosControllerInterface {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<KudoDto> getKudo(@PathVariable String id) {
+    public ResponseEntity<Kudos> getKudo(@PathVariable String id) {
         try {
-            KudoDto kudo = kudoServiceFactory.getObject().getKudo(id);
+            Kudos kudo = kudoServiceFactory.getObject().getKudo(id);
             return new ResponseEntity<>(kudo, HttpStatus.OK);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -44,9 +45,9 @@ public class KudosController implements KudosControllerInterface {
 
     @Override
     @PostMapping
-    public ResponseEntity<KudoDto> createKudo(@RequestBody KudoDto newKudo) {
+    public ResponseEntity<Boolean> createKudo(@RequestBody KudoDto newKudo) {
         try {
-            var kudo = kudoServiceFactory.getObject().createUpdate(newKudo);
+            var kudo = kudoServiceFactory.getObject().create(newKudo);
             return new ResponseEntity<>(kudo, HttpStatus.OK);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -55,9 +56,9 @@ public class KudosController implements KudosControllerInterface {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<KudoDto> updateKudo(@RequestBody KudoDto updatedKudo, @PathVariable String id) {
+    public ResponseEntity<Boolean> updateKudo(@RequestBody KudoDto updatedKudo, @PathVariable String id) {
         try {
-            var kudo = kudoServiceFactory.getObject().createUpdate(updatedKudo);
+            var kudo = kudoServiceFactory.getObject().update(updatedKudo, id);
             return new ResponseEntity<>(kudo, HttpStatus.OK);
         } catch (Exception e) {
             throw new RuntimeException(e);

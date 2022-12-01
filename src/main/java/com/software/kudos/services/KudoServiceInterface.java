@@ -1,16 +1,17 @@
 package com.software.kudos.services;
 
-import com.software.kudos.components.redis.exceptions.ConnectionException;
 import com.software.kudos.models.KudoDto;
+import com.tej.JooQDemo.jooq.sample.model.tables.pojos.Kudos;
 
 import java.util.List;
 
 public interface KudoServiceInterface {
-    List<KudoDto> getKudos() throws ConnectionException;
+    List<Kudos> getKudos();
 
-    KudoDto getKudo(String id) throws ConnectionException;
+    Kudos getKudo(String id);
 
-    KudoDto createUpdate(KudoDto kudo) throws ConnectionException;
+    boolean create(KudoDto newKudo);
+    boolean update(KudoDto newKudo, String id);
 
-    void deleteKudo(String id) throws ConnectionException;
+    void deleteKudo(String id);
 }

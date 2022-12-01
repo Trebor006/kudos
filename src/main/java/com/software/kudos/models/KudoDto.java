@@ -1,5 +1,6 @@
 package com.software.kudos.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.software.kudos.constants.GeneralConstant;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.UUID;
 
 @Data
@@ -22,7 +25,8 @@ public class KudoDto {
     private String subject;
 
     @JsonProperty(GeneralConstant.FECHA)
-    private String date;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDate date;
 
     @JsonProperty(GeneralConstant.EMPLEADO_DESTINATARIO)
     private String recipientEmployeeId;
